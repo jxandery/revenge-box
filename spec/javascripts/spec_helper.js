@@ -1,4 +1,6 @@
 // Teaspoon includes some support files, but you can use anything from your own support path too.
+//= require magic_lamp
+//
 // require support/expect
 // require support/sinon
 //= require support/chai
