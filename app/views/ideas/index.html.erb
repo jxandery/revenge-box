@@ -1,2 +1,10 @@
 <div class="new-idea"></div>
-<div class="ideas"></div>
+<div class="ideas">
+  <ul>
+    <% @ideas.each do |idea| %>
+      <li>title: <%= idea.title %><br>body: <%= idea.body %><br>quality: <%= idea.quality %></li>
+    <% end %>
+  </ul>
+</div>
+
+
