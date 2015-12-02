@@ -1,10 +1,26 @@
-<div class="new-idea"></div>
+var ideas = [];
+
+function showAllIdeas(){
+  $('#results').text('');
+  items.forEach()
+
+};
+
+<div class="new-idea">
+<form>
+  <label><b>Enter an Idea</b></label>
+  <input type="text" name="idea-form" id="user_input">
+</form>
+
+debugger;
+
+<input type="submit" onclick="showInput();"><br />
+<label>Ideas List: </label>
+</div>
+
 <div class="ideas">
-  <ul>
-    <% @ideas.each do |idea| %>
-      <li>title: <%= idea.title %><br>body: <%= idea.body %><br>quality: <%= idea.quality %></li>
-    <% end %>
-  </ul>
+   <%#display all the ideas %>
+
 </div>
 
 
