@@ -1,26 +1,51 @@
-var ideas = [];
+<!doctype html>
 
-function showAllIdeas(){
-  $('#results').text('');
-  items.forEach()
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Revenge Box</title>
+</head>
 
-};
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h1>Revenge Box</h1>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
 
-<div class="new-idea">
-<form>
-  <label><b>Enter an Idea</b></label>
-  <input type="text" name="idea-form" id="user_input">
-</form>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
+        <h3>Latest Posts</h3>
+        <div id="latest-posts">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <button name="button-fetch" id="fetch-button" class="btn btn-default pull-right">Fetch Posts</button>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
 
-debugger;
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <hr>
+        <div class="form-group">
+          <input class="form-control" type="text" id="post-description">
+        </div>
+        <input class="btn btn-default pull-right" id="create-post" type="button" name="submit" value="Create Post">
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
 
-<input type="submit" onclick="showInput();"><br />
-<label>Ideas List: </label>
-</div>
-
-<div class="ideas">
-   <%#display all the ideas %>
-
-</div>
-
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/stylesheets/birdeck.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="assets/javascripts/revenge_box.js"></script>
+</body>
+</html>
