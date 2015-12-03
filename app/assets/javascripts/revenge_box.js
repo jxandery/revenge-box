@@ -31,7 +31,18 @@ $(document).ready(function(){
       type: 'POST',
       url: '/ideas.json',
       data: postParams,
-      success: function(){ console.log('winter is coming')}
+      success: function(post){
+        $('#latest-posts').append(
+            "<div class='post' data-id='"
+            + post.id
+            + "'><h6>Published on "
+            + post.created_at
+            + "</h6><p>"
+            + post.title
+            + ":" + post.body
+            + "</p></div>"
+            )
+      }
     });
   });
 
