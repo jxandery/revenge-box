@@ -30,6 +30,7 @@ function renderPost(post) {
       + "</h6><p>Title: "
       + post.title
       + "</p><p>Body: " + post.body
+      + "</p><p>Quality: " + post.quality
       + "</p><button id='delete-post' class='btn btn-default btn-xs'>Delete</button></div>"
       );
 }
