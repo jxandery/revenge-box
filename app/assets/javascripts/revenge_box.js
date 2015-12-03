@@ -27,6 +27,8 @@ $(document).ready(function(){
       }
     }
 
+    $('#post-description').val('');
+
     $.ajax({
       type: 'POST',
       url: '/ideas.json',
