@@ -1,7 +1,6 @@
 $(document).ready(function(){
   fetchPosts();
   createPost();
-
 });
 
 function renderPosts() {
@@ -23,7 +22,7 @@ function fetchPosts() {
     url: '/ideas.json',
     success: function(posts){
       $.each(posts, function(index, post){
-        renderPost(post);
+        renderPosts(post);
       });
     }
   });
@@ -46,7 +45,7 @@ function createPost(){
       url: '/ideas.json',
       data: postParams,
       success: function(post){
-        renderPost(post);
+        renderPosts(post);
       }
     });
   });
