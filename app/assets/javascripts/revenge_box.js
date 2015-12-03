@@ -1,7 +1,25 @@
 $(document).ready(function(){
   fetchPosts();
+  deletePost();
   createPost();
 });
+
+function deletePost() {
+  $('#latest-posts').delegate('#delete-post', 'click', function() {
+    var $post = $(this).closest('.post');
+    $.ajax({
+      type: 'DELETE',
+      url: '/ideas/' + $post.attr('data-id') + '.json',
+      success: function(){
+        $post.remove()
+      },
+      error: function() {
+        $post.remove()
+          console.log('the post was already deleted')
+      }
+    });
+  });
+}
 
 function renderPost(post) {
   $('#latest-posts').append(
@@ -12,7 +30,7 @@ function renderPost(post) {
       + "</h6><p>"
       + post.title
       + ":" + post.body
-      + "</p></div>"
+      + "</p><button id='delete-post' class='btn btn-default btn-xs'>Delete</button></div>"
       );
 }
 
