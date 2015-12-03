@@ -15,5 +15,11 @@ RSpec.describe Idea, type: :model do
 
       expect(idea).to_not be_valid
     end
+
+    it "is invalid without body" do
+      idea.body = nil
+
+      expect(idea).to_not be_valid
+    end
   end
 end
