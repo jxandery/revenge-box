@@ -67,6 +67,9 @@ function createPost(){
       data: postParams,
       success: function(post){
         renderPost(post);
+      },
+      error: function() {
+        alert('An idea title and body are required');
       }
     });
   });

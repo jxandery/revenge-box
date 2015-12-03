@@ -10,5 +10,10 @@ RSpec.describe Idea, type: :model do
       expect(idea).to be_valid
     end
 
+    it "is invalid without title" do
+      idea.title = nil
+
+      expect(idea).to_not be_valid
+    end
   end
 end
