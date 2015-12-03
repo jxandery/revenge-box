@@ -2,8 +2,11 @@ class IdeasController < ApplicationController
   respond_to :html, :json, :xml
 
   def index
-    @ideas = Idea.all
+    respond_with Idea.all
+  end
 
-    respond_with @ideas
+  def create
+    respond_with Idea.create(title: params[:idea][:title],
+                body: params[:idea][:body])
   end
 end

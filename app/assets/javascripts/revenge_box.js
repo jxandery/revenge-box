@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $.ajax({
     type: 'GET',
-    url: 'https://desolate-inlet-6608.herokuapp.com/ideas.json',
+    url: '/ideas.json',
     success: function(posts){
       $.each(posts, function(index, post){
         $('#latest-posts').append(
@@ -14,8 +14,25 @@ $(document).ready(function(){
             + ":" + post.body
             + "</p></div>"
             )
-
       });
     }
   });
+
+  $('#create-post').on('click', function(){
+    var postDescription = $('#post-description').val();
+    var postParams      = {
+      idea: {
+        title: postDescription,
+        body: 'known for the moment'
+      }
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/ideas.json',
+      data: postParams,
+      success: function(){ console.log('winter is coming')}
+    });
+  });
+
 });
