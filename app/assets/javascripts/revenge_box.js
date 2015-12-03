@@ -31,7 +31,8 @@ function renderPost(post) {
       + post.title
       + "</p><p>Body: " + post.body
       + "</p><p>Quality: " + post.quality
-      + "</p><button id='delete-post' class='btn btn-default btn-xs'>Delete</button></div>"
+      + "</p><button id='edit-post' class='btn btn-default btn-xs'>Edit</button>"
+      + "<button id='delete-post' class='btn btn-default btn-xs'>Delete</button></div>"
       );
 }
 
