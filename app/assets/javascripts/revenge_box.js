@@ -30,7 +30,11 @@ function renderPost(post) {
       + "</h6><p>Title: "
       + post.title
       + "</p><p>Body: " + post.body
-      + "</p><p>Quality: " + post.quality
+      + "</p><p>Quality: "
+      + post.quality
+      + "&nbsp;&nbsp;&nbsp;"
+      + "<button id='thumbs-up' class='btn btn-default btn-xs'>Thumbs Up</button>"
+      + "<button id='thumbs-down' class='btn btn-default btn-xs'>Thumbs down</button>"
       + "</p><button id='edit-post' class='btn btn-default btn-xs'>Edit</button>"
       + "<button id='delete-post' class='btn btn-default btn-xs'>Delete</button></div>"
       );
