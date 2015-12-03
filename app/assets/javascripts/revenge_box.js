@@ -1,8 +1,39 @@
 $(document).ready(function(){
   fetchPosts();
+  editPost();
   deletePost();
   createPost();
 });
+
+function editPost(){
+  $('#edit-post').on('click', function(){
+    //console.log('sliding');
+    $('#hidden').slideDown();
+  });
+  var editDescription = $('#edit-description').val();
+  var editBody = $('#edit-body').val('');
+  var editParams      = {
+    idea: {
+      title: editDescription,
+      body: editBody
+    }
+  }
+
+  $('#edit-description').val('');
+  $('#edit-body').val('');
+
+  $.ajax({
+    type: 'POST',
+    url: '/ideas.json',
+    data: editParams,
+    success: function(post){
+      renderPost(post);
+    },
+    error: function() {
+      alert('An idea title and body are required');
+    }
+  });
+}
 
 function deletePost() {
   $('#latest-posts').delegate('#delete-post', 'click', function() {
@@ -36,8 +67,14 @@ function renderPost(post) {
       + "<button id='thumbs-up' class='btn btn-default btn-xs'>Thumbs Up</button>"
       + "<button id='thumbs-down' class='btn btn-default btn-xs'>Thumbs down</button>"
       + "</p><button id='edit-post' class='btn btn-default btn-xs'>Edit</button>"
-      + "<button id='delete-post' class='btn btn-default btn-xs'>Delete</button></div>"
+      + "<button id='delete-post' class='btn btn-default btn-xs'>Delete</button>"
+      //edit forms
+      + "<div class='form-group' id='hidden'><div class='row'><div class='col-sm-4'><h6>Edit Title</h6>"
+      + "<input class='form-control' type='text' id='edit-description'></div></div><div class='row'><div class='col-sm-8'>"
+      + "<h6>Edit Body</h6><input class='form-control' type='text' id='edit-body'></div></div><input "
+      + "class='btn btn-default pull-right' id='edit-post' type='button' name='submit' value='Update Idea'></div></div>"
       );
+  $('#hidden').slideUp();
 }
 
 function fetchPosts() {
