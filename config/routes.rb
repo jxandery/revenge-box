@@ -3,12 +3,6 @@ Rails.application.routes.draw do
 
   resources :ideas
 
-  namespace :api do
-    namespace :v1 do
-      resources :ideas
-    end
-  end
-
 end
 
 
