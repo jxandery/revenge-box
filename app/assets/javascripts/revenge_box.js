@@ -1,40 +1,40 @@
 $(document).ready(function(){
   fetchPosts();
-  editPost();
+  //editPost();
   deletePost();
   createPost();
 });
 
-function editPost(){
-  $('#edit-post').on('click', function(){
-    //console.log('sliding');
-    $('#hidden').show();
-  });
+//function editPost(){
+  //$('#edit-post').on('click', function(){
+    ////console.log('sliding');
+    //$('#hidden').show();
+  //});
 
-  var editDescription = $('#edit-description').val();
-  var editBody = $('#edit-body').val('');
-  var editParams      = {
-    idea: {
-      title: editDescription,
-      body: editBody
-    }
-  }
+  //var editDescription = $('#edit-description').val();
+  //var editBody = $('#edit-body').val('');
+  //var editParams      = {
+    //idea: {
+      //title: editDescription,
+      //body: editBody
+    //}
+  //}
 
-  $('#edit-description').val('');
-  $('#edit-body').val('');
+  //$('#edit-description').val('');
+  //$('#edit-body').val('');
 
-  $.ajax({
-    type: 'POST',
-    url: '/ideas.json',
-    data: editParams,
-    success: function(post){
-      renderPost(post);
-    },
-    error: function() {
-      alert('An idea title and body are required');
-    }
-  });
-}
+  //$.ajax({
+    //type: 'POST',
+    //url: '/ideas.json',
+    //data: editParams,
+    //success: function(post){
+      //renderPost(post);
+    //},
+    //error: function() {
+      //alert('An idea title and body are required');
+    //}
+  //});
+//}
 
 function deletePost() {
   $('#latest-posts').delegate('#delete-post', 'click', function() {
