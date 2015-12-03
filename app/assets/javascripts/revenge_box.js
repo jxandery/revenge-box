@@ -59,6 +59,7 @@ function createPost(){
     }
 
     $('#post-description').val('');
+    $('#post-body').val('');
 
     $.ajax({
       type: 'POST',
