@@ -23,13 +23,13 @@ function deletePost() {
 
 function renderPost(post) {
   $('#latest-posts').append(
-      "<div class='post' data-id='"
+      "<br><br><div class='post' data-id='"
       + post.id
-      + "'><h6>Published on "
+      + "'><h6>Thought up "
       + post.created_at
-      + "</h6><p>"
+      + "</h6><p>Title: "
       + post.title
-      + ":" + post.body
+      + "</p><p>Body: " + post.body
       + "</p><button id='delete-post' class='btn btn-default btn-xs'>Delete</button></div>"
       );
 }
@@ -49,10 +49,11 @@ function fetchPosts() {
 function createPost(){
   $('#create-post').on('click', function(){
     var postDescription = $('#post-description').val();
+    var postBody = $('#post-body').val();
     var postParams      = {
       idea: {
         title: postDescription,
-        body: 'known for the moment'
+        body: postBody
       }
     }
 
