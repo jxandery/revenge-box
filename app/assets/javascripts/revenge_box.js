@@ -3,7 +3,7 @@ $(document).ready(function(){
   createPost();
 });
 
-function renderPosts() {
+function renderPost(post) {
   $('#latest-posts').append(
       "<div class='post' data-id='"
       + post.id
@@ -13,7 +13,7 @@ function renderPosts() {
       + post.title
       + ":" + post.body
       + "</p></div>"
-      )
+      );
 }
 
 function fetchPosts() {
@@ -22,7 +22,7 @@ function fetchPosts() {
     url: '/ideas.json',
     success: function(posts){
       $.each(posts, function(index, post){
-        renderPosts(post);
+        renderPost(post);
       });
     }
   });
@@ -45,7 +45,7 @@ function createPost(){
       url: '/ideas.json',
       data: postParams,
       success: function(post){
-        renderPosts(post);
+        renderPost(post);
       }
     });
   });
