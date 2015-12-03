@@ -10,6 +10,7 @@ function editPost(){
     //console.log('sliding');
     $('#hidden').show();
   });
+
   var editDescription = $('#edit-description').val();
   var editBody = $('#edit-body').val('');
   var editParams      = {
