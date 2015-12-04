@@ -6,8 +6,7 @@ $(document).ready(function(){
 
 function editPost(){
   $('.edit-post').on('click', function(){
-    console.log('sliding');
-    //$('#hidden').show();
+    $('#hidden').slideToggle();
   });
 
   //var editDescription = $('#edit-description').val();
@@ -74,7 +73,7 @@ function renderPost(post) {
       + "<h6>Edit Body</h6><input class='form-control' type='text' id='edit-body'></div></div><input "
       + "class='btn btn-default pull-right edit-post' type='button' name='submit' value='Update Idea'></div></div>"
       );
-  //$('#hidden').hide();
+  $('#hidden').hide();
 }
 
 function fetchPosts() {
