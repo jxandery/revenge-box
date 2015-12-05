@@ -3,6 +3,7 @@ $(document).ready(function(){
   deletePost();
   createPost();
   searchPost();
+  editPost();
 });
 
 function searchPost() {
@@ -19,34 +20,56 @@ function searchPost() {
 }
 
 function editPost(){
+  // when the edit post button is clicked slide down the form
   $('.edit-post').on('click', function(){
     var $postId = $(this).closest('.post').attr('data-id');
     $('.hidden-forms' + $postId).slideToggle();
+    //
+    // when the update idea button is clicked
+    // save the values entered into the form
+    // delete the current post
+    // create a new post with the saved values
+    $('.update-idea').on('click', function(){
+      console.log(this);
+      var editDescription = $('#edit-description').val();
+      var editBody = $('#edit-body').val();
+      var editParams      = {
+        idea: {
+          title: editDescription,
+          body: editBody
+        }
+      }
+
+      var $post = $(this).closest('.post');
+
+      //delete post
+      $.ajax({
+        type: 'DELETE',
+        url: '/ideas/' + $post.attr('data-id') + '.json',
+        success: function(){
+          $post.remove()
+        },
+        error: function() {
+          $post.remove()
+        }
+      });
+
+      // create post
+      $.ajax({
+        type: 'POST',
+        url: '/ideas.json',
+        data: editParams,
+        success: function(post){
+          alert('post udpated');
+          renderPost(post);
+          editPost();
+        },
+        error: function() {
+          alert('An idea title and body are required');
+        }
+      });
+    });
   });
-
-  //var editDescription = $('#edit-description').val();
-  //var editBody = $('#edit-body').val('');
-  //var editParams      = {
-  //idea: {
-  //title: editDescription,
-  //body: editBody
-  //}
-  //}
-
-  //$('#edit-description').val('');
-  //$('#edit-body').val('');
-
-  //$.ajax({
-  //type: 'POST',
-  //url: '/ideas.json',
-  //data: editParams,
-  //success: function(post){
-  //renderPost(post);
-  //},
-  //error: function() {
-  //alert('An idea title and body are required');
-  //}
-  //});
 }
 
 function deletePost() {
@@ -86,7 +109,7 @@ function renderPost(post) {
       + "<div class='edit form-group hidden-forms" + post.id + "'><div class='row'><div class='col-sm-4'><h6>Edit Title</h6>"
       + "<input class='form-control' type='text' id='edit-description'></div></div><div class='row'><div class='col-sm-8'>"
       + "<h6>Edit Body</h6><input class='form-control' type='text' id='edit-body'></div></div><input "
-      + "class='btn btn-default pull-right edit-post' type='button' name='submit' value='Update Idea'></div></div>"
+      + "class='btn btn-default pull-right edit-post update-idea' type='button' name='submit' value='Update Idea'></div></div>"
       );
   $('.edit').hide();
 }
