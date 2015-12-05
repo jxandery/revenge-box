@@ -20,7 +20,8 @@ function searchPost() {
 
 function editPost(){
   $('.edit-post').on('click', function(){
-    $('#hidden').slideToggle();
+    var $postId = $(this).closest('.post').attr('data-id');
+    $('.hidden-forms' + $postId).slideToggle();
   });
 
   //var editDescription = $('#edit-description').val();
