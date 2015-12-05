@@ -9,4 +9,8 @@ class IdeasController < ApplicationController
     respond_with Idea.create(title: params[:idea][:title],
                 body: params[:idea][:body])
   end
+
+  def destroy
+    Idea.find(params[:id]).destroy
+  end
 end
