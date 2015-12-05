@@ -2,7 +2,21 @@ $(document).ready(function(){
   fetchPosts();
   deletePost();
   createPost();
+  searchPost();
 });
+
+function searchPost() {
+  $('#filter').keyup(function() {
+    var filter = $(this).val();
+    $('#latest-posts').each(function() {
+      if ($(this).text().search(new RegExp(filter, 'i')) < 0 ) {
+        $(this).fadeOut();
+      } else {
+        $(this).show();
+      }
+    });
+  });
+}
 
 function editPost(){
   $('.edit-post').on('click', function(){
@@ -68,12 +82,12 @@ function renderPost(post) {
       + "</p><button class='edit-post' class='btn btn-default btn-xs'>Edit</button>"
       + "<button id='delete-post' class='btn btn-default btn-xs'>Delete</button>"
       //edit forms
-      + "<div class='form-group' id='hidden'><div class='row'><div class='col-sm-4'><h6>Edit Title</h6>"
+      + "<div class='edit form-group hidden-forms" + post.id + "'><div class='row'><div class='col-sm-4'><h6>Edit Title</h6>"
       + "<input class='form-control' type='text' id='edit-description'></div></div><div class='row'><div class='col-sm-8'>"
       + "<h6>Edit Body</h6><input class='form-control' type='text' id='edit-body'></div></div><input "
       + "class='btn btn-default pull-right edit-post' type='button' name='submit' value='Update Idea'></div></div>"
       );
-  $('#hidden').hide();
+  $('.edit').hide();
 }
 
 function fetchPosts() {
