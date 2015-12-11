@@ -6,11 +6,16 @@ class IdeasController < ApplicationController
   end
 
   def create
-    respond_with Idea.create(title: params[:idea][:title],
-                body: params[:idea][:body])
+    respond_with Idea.create!(idea_params)
   end
 
   def destroy
     Idea.find(params[:id]).destroy
+  end
+
+  private
+
+  def idea_params
+    params.require(:idea).permit(:title, :body, :status)
   end
 end
