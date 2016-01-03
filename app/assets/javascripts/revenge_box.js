@@ -20,19 +20,12 @@ function searchPost() {
 }
 
 function editPost(){
-  // when the edit post button is clicked slide down the form
   $('.edit-post').on('click', function(){
     var $postId = $(this).closest('.post').attr('data-id');
     $('.hidden-forms' + $postId).slideToggle();
-    //
-    // when the update idea button is clicked
-    // save the values entered into the form
-    // delete the current post
-    // create a new post with the saved values
     $('.update-idea').on('click', function(){
-      console.log(this);
       var editDescription = $('#edit-description').val();
-      var editBody = $('#edit-body').val();
+      var editBody        = $('#edit-body').val();
       var editParams      = {
         idea: {
           title: editDescription,
@@ -42,30 +35,22 @@ function editPost(){
 
       var $post = $(this).closest('.post');
 
-      //delete post
+      // update post
       $.ajax({
-        type: 'DELETE',
+        type: 'PUT',
         url: '/ideas/' + $post.attr('data-id') + '.json',
-        success: function(){
-          $post.remove()
-        },
-        error: function() {
-          $post.remove()
-        }
-      });
-
-      // create post
-      $.ajax({
-        type: 'POST',
-        url: '/ideas.json',
         data: editParams,
         success: function(post){
-          alert('post udpated');
-          renderPost(post);
+          var updatedDescription = $('#edit-description').val();
+          var updatedBody        = $('#edit-body').val();
+
+          $('.post[data-id="' + post.id + '"] p.title').html("Title: " + updatedDescription);
+          $('.post[data-id="' + post.id + '"] p.body').html("Body: " + updatedBody);
+
+          $('#edit-description').val('');
+          $('#edit-body').val('');
+
           editPost();
-        },
-        error: function() {
-          alert('An idea title and body are required');
         }
       });
     });
@@ -95,9 +80,9 @@ function renderPost(post) {
       + post.id
       + "'><h6>Thought up "
       + post.created_at
-      + "</h6><p>Title: "
+      + "</h6><p class='title'>Title: "
       + post.title
-      + "</p><p>Body: " + post.body
+      + "</p><p class='body'>Body: " + post.body
       + "</p><p>Quality: "
       + post.quality
       + "&nbsp;&nbsp;&nbsp;"

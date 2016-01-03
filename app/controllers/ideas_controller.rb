@@ -9,6 +9,12 @@ class IdeasController < ApplicationController
     respond_with Idea.create!(idea_params)
   end
 
+  def update
+    idea = Idea.find(params[:id])
+    idea.update!(idea_params)
+    render json: idea.to_json, status: :ok
+  end
+
   def destroy
     Idea.find(params[:id]).destroy
   end
