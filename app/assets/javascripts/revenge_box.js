@@ -47,10 +47,6 @@ function editPost(){
           $('.post[data-id="' + post.id + '"] p.title').html("Title: " + updatedDescription);
           $('.post[data-id="' + post.id + '"] p.body').html("Body: " + updatedBody);
 
-          $('#edit-description').val('');
-          $('#edit-body').val('');
-
-          editPost();
         }
       });
     });
