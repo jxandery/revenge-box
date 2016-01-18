@@ -31,7 +31,7 @@ function editPost(){
           title: editDescription,
           body: editBody
         }
-      }
+      };
 
       var $post = $(this).closest('.post');
 
@@ -58,11 +58,11 @@ function deletePost() {
       type: 'DELETE',
       url: '/ideas/' + $post.attr('data-id') + '.json',
       success: function(){
-        $post.remove()
+        $post.remove();
       },
       error: function() {
-        $post.remove()
-          console.log('the post was already deleted')
+        $post.remove();
+          console.log('the post was already deleted');
       }
     });
   });
@@ -114,7 +114,7 @@ function createPost(){
         title: postDescription,
         body: postBody
       }
-    }
+    };
 
     $('#post-description').val('');
     $('#post-body').val('');
