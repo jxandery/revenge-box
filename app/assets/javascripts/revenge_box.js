@@ -35,7 +35,6 @@ function editPost(){
 
       var $post = $(this).closest('.post');
 
-      // update post
       $.ajax({
         type: 'PUT',
         url: '/ideas/' + $post.attr('data-id') + '.json',
@@ -46,7 +45,6 @@ function editPost(){
 
           $('.post[data-id="' + post.id + '"] p.title').html("Title: " + updatedDescription);
           $('.post[data-id="' + post.id + '"] p.body').html("Body: " + updatedBody);
-
         }
       });
     });
@@ -86,7 +84,6 @@ function renderPost(post) {
       + "<button id='thumbs-down' class='btn btn-default btn-xs'>Thumbs down</button>"
       + "</p><button class='edit-post' class='btn btn-default btn-xs'>Edit</button>"
       + "<button id='delete-post' class='btn btn-default btn-xs'>Delete</button>"
-      //edit forms
       + "<div class='edit form-group hidden-forms" + post.id + "'><div class='row'><div class='col-sm-4'><h6>Edit Title</h6>"
       + "<input class='form-control' type='text' id='edit-description'></div></div><div class='row'><div class='col-sm-8'>"
       + "<h6>Edit Body</h6><input class='form-control' type='text' id='edit-body'></div></div><input "
