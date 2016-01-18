@@ -11,8 +11,6 @@ RSpec.describe 'add idea' do
       click_button "Save Idea"
       save_and_open_page
 
-      #expect(page).to have_content("Brilliant Idea")
-      #expect(page).to have_content("Needs more work")
       expect(current_path).to eq(ideas_path)
     end
   end
