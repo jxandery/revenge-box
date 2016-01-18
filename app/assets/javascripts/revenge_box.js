@@ -6,10 +6,12 @@ $(document).ready(function(){
   editPost();
 });
 
+var $latestPosts = $('#latest-posts');
+
 function searchPost() {
   $('#filter').keyup(function() {
     var filter = $(this).val();
-    $('#latest-posts').each(function() {
+    $latestPosts.each(function() {
       if ($(this).text().search(new RegExp(filter, 'i')) < 0 ) {
         $(this).fadeOut();
       } else {
@@ -22,10 +24,12 @@ function searchPost() {
 function editPost(){
   $('.edit-post').on('click', function(){
     var $postId = $(this).closest('.post').attr('data-id');
+    var $editField = $('#edit-description');
+    var $editbody = $('#edit-body');
     $('.hidden-forms' + $postId).slideToggle();
     $('.update-idea').on('click', function(){
-      var editDescription = $('#edit-description').val();
-      var editBody        = $('#edit-body').val();
+      var editDescription = $editField.val();
+      var editBody        = $editbody.val();
       var editParams      = {
         idea: {
           title: editDescription,
@@ -40,8 +44,8 @@ function editPost(){
         url: '/ideas/' + $post.attr('data-id') + '.json',
         data: editParams,
         success: function(post){
-          var updatedDescription = $('#edit-description').val();
-          var updatedBody        = $('#edit-body').val();
+          var updatedDescription = $editField.val();
+          var updatedBody        = $editBody.val();
 
           $('.post[data-id="' + post.id + '"] p.title').html("Title: " + updatedDescription);
           $('.post[data-id="' + post.id + '"] p.body').html("Body: " + updatedBody);
@@ -52,7 +56,7 @@ function editPost(){
 }
 
 function deletePost() {
-  $('#latest-posts').delegate('#delete-post', 'click', function() {
+  $latestPosts.delegate('#delete-post', 'click', function() {
     var $post = $(this).closest('.post');
     $.ajax({
       type: 'DELETE',
@@ -69,7 +73,7 @@ function deletePost() {
 }
 
 function renderPost(post) {
-  $('#latest-posts').append(
+  $latestPosts.append(
       "<br><br><div class='post' data-id='"
       + post.id
       + "'><h6>Thought up "
@@ -107,17 +111,17 @@ function fetchPosts() {
 
 function createPost(){
   $('#create-post').on('click', function(){
-    var postDescription = $('#post-description').val();
-    var postBody = $('#post-body').val();
+    var $postDescription = $('#post-description');
+    var $postBody = $('#post-body');
     var postParams      = {
       idea: {
-        title: postDescription,
-        body: postBody
+        title: $postDescription.val(),
+        body: $postBody.val()
       }
     };
 
-    $('#post-description').val('');
-    $('#post-body').val('');
+    $postDescription.val('');
+    $postBody.val('');
 
     $.ajax({
       type: 'POST',
